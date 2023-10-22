@@ -1,0 +1,123 @@
+html {
+	text-align: justify;
+	background-color: lightSteelBlue;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	border: 15px solid darkblue;
+}
+
+.AlignCenter    { text-align: center; }
+.AlignJustify   { text-align: justify; }
+.AlignLeft      { text-align: left; }
+.AlignRight     { text-align: right; }
+
+.PureRed        { color: #FF0000; }
+.PureOrange     { color: #FF8800; } 
+.PureYellow     { color: #FFFF00; }
+.PureGreen      { color: #00FF00; }
+.PureCyan       { color: #00FFFF; }
+.PureBlue       { color: #0000FF; }
+.PurePurple     { color: #AA00FF; }
+.PurePink       { color: #FF00AA; }
+
+.Maroon         { color: maroon; }
+.DarkRed        { color: darkred; }
+.Brick          { color: brown; }
+.FireBrick      { color: firebrick; }
+.Crimson        { color: crimson; }
+.Red            { color: red; }
+.Salmon         { color: salmon }
+.Orange         { color: orange; }
+.Yellow         { color: yellow; }
+.DarkGreen      { color: darkgreen; }
+.Green          { color: green; }
+.Forest         { color: forestgreen; }
+.Lime           { color: limegreen; }
+.NeonGreen      { color: chartreuse; }
+.Aqua           { color: aqua; }
+.Cyan           { color: cyan; }
+.SkyBlue        { color: lightskyblue }
+.LightBlue      { color: dodgerblue; }
+.Blue           { color: blue; }
+.DarkBlue       { color: darkblue; }
+.BlueViolet     { color: blueviolet; }
+.DarkOrchid     { color: darkorchid; }
+.DarkViolet     { color: darkviolet; }
+.Indigo         { color: indigo; }
+.Purple         { color: rebeccapurple; }
+.WarmPurple     { color: purple; }
+.Violet         { color: violet; }
+.Plum           { color: plum; }
+.DarkPink       { color: mediumvioletred; }
+.Magenta        { color: magenta; }
+.HotPink        { color: deeppink; }
+
+.PastelOrange   { color: lightsalmon;}
+.PastelPink     { color: lightpink}
+.PastelRose     { color: mistyrose}
+.PastelLavender { color: lavenderblush;}
+.PastelGreen    { color: palegreen;}
+.PastelBlue     { color: paleturquoise;}
+.PastelCyan     { color: lightcyan;}
+.PastelYellow   { color: lemonchiffon;}
+
+.Lavender       { color: lavender;}
+
+.Brown          { color: saddlebrown;}
+.Gold           { color: gold};
+.DarkGold       { color: goldenrod;}
+.Silver         { color: silver;}
+.LightSteel     { color: lightsteelblue;}
+.darkSteel      { color: steelblue;}
+
+.Title {
+	font-size: 10vi;
+	text-align: center;
+	padding: 10vh 0;
+	margin: 0;
+	position: sticky;
+	font-weight: 100vw;
+	font-variant: small-caps
+}
+
+hr {
+	border: 5px solid darkblue;
+}
+
+header {
+	background-image: url("IconBackground.png");
+	background-size: cover;
+}
+
+audio {
+	width: 0;
+	height: 0;
+}
+
+.SmallIconImage {
+	height: 2.5ex;
+	vertical-align: middle;
+}
+
+.NavigationBar {
+	font-size: 250%;
+	position: sticky;
+	top: 0;
+	width: 100%;
+	z-index: 9;
+	color: darkblue;
+	background-color: lightsteelblue;
+}
+.NavigationBar hr{
+	margin: 0;
+	position: sticky;
+}
+
+.NavigationItem {
+	text-decoration:none;
+	margin: 0;
+	padding: 0;
+}

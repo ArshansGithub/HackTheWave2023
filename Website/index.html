@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Restaurant Roulette Webapp</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" type="image/x-icon" href="https://static.wikia.nocookie.net/total-drama-island-cartoon-network/images/0/07/Chef%27s_Food.png/revision/latest?cb=20180629044803">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!--<script type= "text/javascript" src="GetDataGoogle.js"></script>-->
+		<style>
+			body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+			.w3-row-padding img {margin-bottom: 12px}
+			/* Set the width of the sidebar to 120px */
+			.w3-sidebar {width: 120px;background: #222;}
+			/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+			#main {margin-left: 120px}
+			/* Remove margins from "page content" on small screens */
+			/* Camden */
+			
+			.POPUP {
+				display: none;
+				position: absolute;
+				left: 25vw;
+				width: 50vw;
+				top: 10vw;
+				height: auto;
+			}
+			
+			#popup1 {
+				display:none;
+				text-align:center;
+			}
+			@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+            
+		</style>
+		<script>
+			let blud = {1: "You can afford it", 2: "Do you have enough money?", 3: "I'm gonna have to see that wallet...", 4: "You definitely can't afford this"}
+
+			var turn;
+			var timer;
+			var time;
+			var count;
+			function set() {
+				turn = 0;
+				timer = 999999;
+				time = (0.5 + Math.random()) * 300;
+				count = 0;
+			}
+			function turnOn() {
+				set();
+				timer = setInterval(turnFan, 0);
+				let x = document.getElementById("wheel");
+				x.disabled = true;
+			}
+			function turnOff() {
+				clearInterval(timer);
+				let x = document.getElementById("wheel");
+				x.disabled = false;
+				document.getElementById("popup1").style.display = "block";
+
+				
+
+				// Create a new image element
+				// name, "address, stars, money, tags, numReviews}
+
+				const city = document.getElementById("userCity").value;
+
+				mainrequest(city).then((randomStuff) => {
+					// Find lowest rated restaurant based on decimal from 0 to 5
+					console.log(randomStuff);
+
+					restaurant = randomStuff[(randomStuff.length * Math.random()) | 0]
+
+					let toAppendTo = document.getElementById("centeredShravan");
+										toAppendTo.style = "text-align: center;"
+					
+					let title = document.createElement("h1");
+					title.innerHTML = "Your Restaurant is: " + restaurant.name;
+					toAppendTo.appendChild(title);
+	
+					let address = document.createElement("h2");
+					address.innerHTML = "Address: " + restaurant.address;
+					toAppendTo.appendChild(address);
+	
+					let stars = document.createElement("h2");
+
+					// Based on number of dollar signs in stars we roast the user
+					console.log(restaurant.stars)
+					let lengthOfDollarSigns = restaurant.money.length;
+
+					console.log(lengthOfDollarSigns)
+
+					switch (lengthOfDollarSigns) {
+						case 1:
+							trollMessage = blud[1];
+							break;
+						case 2:
+							trollMessage = blud[2];
+							break;
+						case 3:
+							trollMessage =  blud[3];
+							break;
+						case 4:
+							trollMessage = blud[4];
+							break;
+						
+						default:
+							trollMessage = blud[4];
+							break;
+
+					}
+
+					toAppendTo.appendChild(stars);
+	
+					let money = document.createElement("h2");
+					money.innerHTML = "Budget: " + restaurant.money + " | " + trollMessage;
+					toAppendTo.appendChild(money);
+	
+					let tags = document.createElement("h2");
+					// Since tags is an array, we need to convert it to a string
+					tags.innerHTML = "Tags: " + restaurant.tags.join(", ");
+					toAppendTo.appendChild(tags);
+	
+					let numReviews = document.createElement("h2");
+					numReviews.innerHTML = "Number of Reviews: " + restaurant.numReviews;
+					toAppendTo.appendChild(numReviews);
+				});
+
+			  }		
+			// When the user clicks on <div>, open the popup
+			function myFunction() {
+				document.getElementById("page1").style.visibility = "visible";
+			}	  
+			function turnFan() {
+				var x = document.getElementById("wheel");
+				turn += 10*Math.random();
+				x.style.transform = "rotate("+ (turn % 360) +"deg)"
+				count += 1;
+				if (count >= time) {
+					turnOff();
+					set();
+				}
+			}
+		</script>
+	</head>
+	<body class="w3-black">
+		<!-- Icon Bar (Sidebar - hidden on small screens) -->
+		<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+			<!-- Avatar image in top left corner -->
+			<img src="https://static.wikia.nocookie.net/total-drama-island-cartoon-network/images/0/07/Chef%27s_Food.png/revision/latest?cb=20180629044803" style="width:50%">
+			<a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+				<i class="fa fa-home w3-xxlarge"></i>
+				<p>HOME</p>
+			</a>
+			<a href="#findergame" onclick="window.scrollTo(0, 240);"  class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+				<i class="fa fa-user w3-xxlarge"></i>
+				<p>ROULETTE</p>
+			</a>
+			<a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+				<i class="fa fa-eye w3-xxlarge"></i>
+				<p>ABOUT</p>
+			</a>
+		</nav>
+
+		<!-- Navbar on small screens (Hidden on medium and large screens) -->
+		<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+			<div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+				<a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+				<a href="#user" onclick="window.scrollTo(0, 240);" class="w3-bar-item w3-button" style="width:25% !important">ROULETTE</a>
+				<a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
+			</div>
+		</div>
+		<div id="page1">
+			<!-- Page Content -->
+			<div class="w3-padding-large" id="main">
+				<!-- Header/Home -->
+				<header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+					<h1 class="w3-jumbo"><span class="w3-hide-small"></span>Restaurant Roulette</h1> <img src="https://static.wikia.nocookie.net/total-drama-island-cartoon-network/images/0/07/Chef%27s_Food.png/revision/latest?cb=20180629044803" alt="logo">
+					<p>"Restaurant Finder"</p>
+						<title>Text Input Box</title>
+						<label for="name">Enter your city: </label>
+						<input required="true" type="text" id="userCity" name="name">
+				</header>
+				
+
+				<!-- Popups -->
+				<div class="w3-content w3-justify w3-text-grey w3-padding-64" id="popup1">
+					<!-- Put Code Here -->
+					<div class="centeredShravan" id="centeredShravan">
+
+					</div>
+					
+				</div>
+
+				<!-- Game Section-->
+				<header class="w3-container w3-padding-32 w3-center w3-black" id="user">
+					<p>Spin the roulette to find your restaurant!</p>
+					<img onclick="turnOn();" id="wheel" src="https://freepngdesign.com/content/uploads/images/casino-roulette-1680010376.png">
+				
+				</header>
+
+				<!-- About Section -->
+				<div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
+					<h2 class="w3-text-light-grey">About Our Team</h2>
+					<hr style="width:200px" class="w3-opacity">
+					<p>Our team is made up of 4 Rancho Bernardo High Schoolers: Kevin Wang, Arshan Shokoohi, Ridham Govind, Nathan Gillespie. We made this project in one day for the "Hack the Wave" hackathon!</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="GetDataGoogle.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</html>
